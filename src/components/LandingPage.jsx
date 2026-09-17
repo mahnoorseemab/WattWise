@@ -19,7 +19,7 @@ const LandingPage = () => {
                 </span>
             </div>
 
-            <p className="text-darkest-purple text-lg md:text-2xl mt-10 text-center">
+            <p className="text-darkest-purple text-lg md:text-xl mt-10 text-center">
                 See how your electricity bills stack up, get a personalized script,
                 <br className="hidden md:block" /> and practice the conversation before you make the call
             </p>
