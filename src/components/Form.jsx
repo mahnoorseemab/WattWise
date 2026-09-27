@@ -1,4 +1,10 @@
+import { useState } from "react"
+
 const Form = () => {
+  const [billAmount, setBillAmount] = useState("")
+  const [unit, setUnit] = useState("")
+  const [tenure, setTenure] = useState("")
+
   return (
     <div className="bg-background h-screen font-sans">
       <div className="flex flex-col items-center ">
@@ -6,17 +12,23 @@ const Form = () => {
         <p className="text-darker-purple">Enter your electricity bill details to know if <br /> you're overpaying or already getting a fair rate.</p>
       </div>
 
-      <div className="flex items-center justify-center m-4 flex-col">
+      <div className="flex items-center justify-center m-4 flex-col border-3">
         <div className="flex flex-col border-2 w-[50vw]">
           <div className="flex flex-col p-4">
             <label htmlFor="BillAmount">Amount of Bill</label>
-            <input className="border-2 p-2" type="number" placeholder="Enter the amount of your bill" 
-            />
+            <input className="border-2 p-2" type="number" placeholder="Enter the amount of your bill"
+              value={unit}
+              onChange={(e) => setUnit(e.target.value)
+              } />
           </div>
 
           <div className="flex flex-col p-4">
             <label htmlFor="BillAmount">Number of units used</label>
-            <input className="border-2 p-2" type="number" placeholder="Enter the number of units used (kWh)" />
+            <input className="border-2 p-2" type="number" placeholder="Enter the number of units used (kWh)"
+            value={tenure}
+              onChange={(e) => setTenure(e.target.value)
+              }
+             />
           </div>
 
           <div className="flex flex-col p-4">
@@ -36,7 +48,6 @@ const Form = () => {
           </button>
         </div>
       </div>
-
     </div>
   )
 }
