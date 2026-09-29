@@ -1,4 +1,6 @@
 import { useState } from "react"
+import Arrow from "../assets/BackArrowIcon.svg"
+import { Link } from "react-router-dom"
 
 const Form = () => {
   const [billAmount, setBillAmount] = useState("")
@@ -8,11 +10,16 @@ const Form = () => {
   return (
     <div className="bg-background h-screen font-sans">
       <div className="flex flex-col items-center ">
-        <h1 className="bg-gradient-to-r from-darkest-purple to-mid-purple bg-clip-text text-transparent font-bold text-4xl tracking-tighter mt-10">Check Your Electricity Bill!</h1>
+        <div className="flex relative">
+          <Link to="/">
+            <img src={Arrow} className="mt-8 absolute right-[230%]" title="Back" alt="Arrow" />
+          </Link>
+          <h1 className="bg-gradient-to-r from-darkest-purple to-mid-purple bg-clip-text text-transparent font-bold text-4xl tracking-tighter mt-10">Check Your Electricity Bill!</h1>
+        </div>
         <p className="text-darker-purple">Enter your electricity bill details to know if <br /> you're overpaying or already getting a fair rate.</p>
       </div>
 
-      <div className="flex items-center justify-center m-4 flex-col border-3">
+      <div className="flex items-center justify-center m-4 flex-col">
         <div className="flex flex-col border-2 w-[50vw]">
           <div className="flex flex-col p-4">
             <label htmlFor="BillAmount">Amount of Bill</label>
