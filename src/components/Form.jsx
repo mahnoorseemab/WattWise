@@ -4,7 +4,9 @@ import { Link } from "react-router-dom"
 
 const Form = () => {
   const [billAmount, setBillAmount] = useState("")
+  const [electricCharges, setElectricCharges] = useState("")
   const [unit, setUnit] = useState("")
+  const [category, setCategory] = useState("")
   const [tenure, setTenure] = useState("")
 
   return (
@@ -19,14 +21,23 @@ const Form = () => {
         <p className="text-darker-purple">Enter your electricity bill details to know if <br /> you're overpaying or already getting a fair rate.</p>
       </div>
 
-      <div className="flex items-center justify-center m-4 flex-col">
+      <div className="flex items-center justify-center m-2 flex-col">
         <div className="flex flex-col border-2 w-[50vw]">
           <div className="flex flex-col p-4">
-            <label htmlFor="BillAmount">Amount of Bill</label>
-            <input className="border-2 p-2" type="number" placeholder="Enter the amount of your bill"
+            <label htmlFor="BillAmount">Total Amount of Bill</label>
+            <input className="border-2 p-2" type="number" placeholder="Enter the total amount of your bill"
               value={billAmount}
               onChange={(e) => setBillAmount(e.target.value)
               } />
+          </div>
+
+          <div className="flex flex-col p-4">
+            <label htmlFor="charges">Electric Charges</label>
+            <input className="border-2 p-2" type="number" placeholder="Enter the electricity charges from your bill"
+              value={electricCharges}
+              onChange={(e) => setElectricCharges(e.target.value)
+              } />
+            <label htmlFor="hint">Find this on your bill under the line for cost of electricity. Don't include taxes, fuel adjustments or other charges.</label>
           </div>
 
           <div className="flex flex-col p-4">
@@ -39,7 +50,21 @@ const Form = () => {
           </div>
 
           <div className="flex flex-col p-4">
-            <label htmlFor="BillAmount">Tenure</label>
+            <label htmlFor="Category">Category</label>
+            <select name="Category" className="p-2 border-2"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)
+              }>
+              <option value="">Choose your category</option>
+              <option value="lifeline">Lifeline</option>
+              <option value="protected">Protected</option>
+              <option value="non-protected">Non-protected</option>
+            </select>
+            <label htmlFor="hint">Check your bill for the tariff category and select the one that matches</label>
+          </div>
+
+          <div className="flex flex-col p-4">
+            <label htmlFor="tenure">Tenure</label>
             <select name="Tenure" className="p-2 border-2"
               value={tenure}
               onChange={(e) => setTenure(e.target.value)
