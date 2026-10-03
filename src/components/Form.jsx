@@ -27,8 +27,10 @@ const Form = () => {
             <label htmlFor="BillAmount">Total Amount of Bill</label>
             <input className="border-2 p-2" type="number" placeholder="Enter the total amount of your bill"
               value={billAmount}
-              onChange={(e) => setBillAmount(e.target.value)
-              } />
+              onChange={(e) =>
+                setBillAmount(e.target.value)
+              }
+            />
           </div>
 
           <div className="flex flex-col p-4">
@@ -44,9 +46,10 @@ const Form = () => {
             <label htmlFor="BillAmount">Number of units used</label>
             <input className="border-2 p-2" type="number" placeholder="Enter the number of units used (kWh)"
               value={unit}
-              onChange={(e) => setUnit(e.target.value)
+              onChange={(e) => {
+                setUnit(e.target.value);
               }
-            />
+              } />
           </div>
 
           <div className="flex flex-col p-4">
