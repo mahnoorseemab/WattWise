@@ -19,7 +19,7 @@ const slabs = {
     ],
     lifeLine: [
         { lowerLimit: 1, upperLimit: 50, rate: 3.95 },
-        { lowerLimit: 1, upperLimit: 100, rate: 7.74 }
+        { lowerLimit: 51, upperLimit: 100, rate: 7.74 }
     ]
 }
 
