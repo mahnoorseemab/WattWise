@@ -18,7 +18,7 @@ const Form = () => {
           </Link>
           <h1 className="bg-gradient-to-r from-darkest-purple to-mid-purple bg-clip-text text-transparent font-bold text-4xl tracking-tighter mt-10">Check Your Electricity Bill!</h1>
         </div>
-        <p className="text-darker-purple">Enter your electricity bill details to know if <br /> you're overpaying or already getting a fair rate.</p>
+        <p className="text-darker-purple">Enter the details from your IESCO bill to compare it with an estimate based on official rates.</p>
       </div>
 
       <div className="flex items-center justify-center m-2 flex-col">
