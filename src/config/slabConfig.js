@@ -15,7 +15,7 @@ const slabs = {
     ],
     protected: [
         { lowerLimit: 1, upperLimit: 100, rate: 10.54 },
-        { lowerLimit: 101, upperLimit: 200, rate: 13.01}
+        { lowerLimit: 101, upperLimit: 200, rate: 13.01 }
     ],
     lifeLine: [
         { lowerLimit: 1, upperLimit: 50, rate: 3.95 },

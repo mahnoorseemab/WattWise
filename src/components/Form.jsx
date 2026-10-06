@@ -59,9 +59,9 @@ const Form = () => {
               onChange={(e) => setCategory(e.target.value)
               }>
               <option value="">Choose your category</option>
-              <option value="lifeline">Lifeline</option>
+              <option value="lifeLine">Lifeline</option>
               <option value="protected">Protected</option>
-              <option value="non-protected">Non-protected</option>
+              <option value="unProtected">Non-protected</option>
             </select>
             <label htmlFor="hint">Check your bill for the tariff category and select the one that matches</label>
           </div>

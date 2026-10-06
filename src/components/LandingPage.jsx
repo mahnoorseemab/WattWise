@@ -9,14 +9,19 @@ const LandingPage = () => {
                     <h1 className="bg-gradient-to-r from-darkest-purple to-mid-purple bg-clip-text text-transparent text-4xl md:text-5xl lg:text-6xl tracking-widest uppercase">
                         Electricity Bill?
                     </h1>
-
                 </span>
             </div>
 
             <p className="text-darkest-purple text-lg md:text-xl mt-10 text-center">
-                "Enter your IESCO bill details. We calculate it using official rates and <br />
+                "Enter your <b>IESCO</b> bill details. We calculate it using official rates and <br />
                 show you any difference, so you know what to ask the company
             </p>
+
+            <div className="mt-6 flex justify-center">
+                <p className="max-w-md rounded-2xl border border-purple-200 bg-white/60 px-4 py-2 text-center text-xs text-purple-800 md:text-sm">
+                    Estimate based on IESCO's official tariff rates. Works for IESCO bills only. <br /> (checked 4 Oct 2026)
+                </p>
+            </div>
 
             <Link to="/form" className="border-2 px-6 py-3 rounded-3xl cursor-pointer transition-all duration-200 ease-in-out active:scale-95 bg-darker-purple text-white text-md mt-10">
                 View form
