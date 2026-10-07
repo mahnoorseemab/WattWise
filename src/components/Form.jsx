@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Arrow from "../assets/BackArrowIcon.svg"
 import { Link } from "react-router-dom"
+import { findRate } from "../utils/calculateOvercharge"
 
 const Form = () => {
   const [billAmount, setBillAmount] = useState("")
@@ -8,6 +9,13 @@ const Form = () => {
   const [unit, setUnit] = useState("")
   const [category, setCategory] = useState("")
   const [tenure, setTenure] = useState("")
+
+  function handleSubmit() {
+    let userUnit = unit
+    let userCategory = category
+
+    findRate(userUnit, userCategory)
+  }
 
   return (
     <div className="bg-background h-screen font-sans">

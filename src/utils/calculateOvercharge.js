@@ -1,3 +1,3 @@
-function calculateOvercharge(){
-    
+export function findRate(){
+    return 0
 }
