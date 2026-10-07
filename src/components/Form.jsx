@@ -13,7 +13,6 @@ const Form = () => {
   function handleSubmit() {
     let userUnit = unit
     let userCategory = category
-
     findRate(userUnit, userCategory)
   }
 
@@ -89,7 +88,11 @@ const Form = () => {
         </div>
 
         <div className="flex items-center justify-center">
-          <button className="border-2 px-6 py-3 rounded-3xl cursor-pointer transition-all duration-200 ease-in-out active:scale-95 bg-darker-purple text-white text-md mt-6">
+          <button className="border-2 px-6 py-3 rounded-3xl cursor-pointer transition-all duration-200 ease-in-out active:scale-95 bg-darker-purple text-white text-md mt-6"
+            onSubmit={
+              handleSubmit()
+            }
+          >
             Submit
           </button>
         </div>
