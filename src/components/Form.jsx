@@ -10,7 +10,8 @@ const Form = () => {
   const [category, setCategory] = useState("")
   const [tenure, setTenure] = useState("")
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault()
     let userUnit = unit
     let userCategory = category
     findRate(userUnit, userCategory)
@@ -27,8 +28,10 @@ const Form = () => {
         </div>
         <p className="text-darker-purple">Enter the details from your IESCO bill to compare it with an estimate based on official rates.</p>
       </div>
-      <form action="">
-
+      <form action=""
+        onSubmit={
+          handleSubmit
+        }>
         <div className="flex items-center justify-center m-2 flex-col">
           <div className="flex flex-col border-2 w-[50vw]">
             <div className="flex flex-col p-4">
@@ -89,11 +92,7 @@ const Form = () => {
           </div>
 
           <div className="flex items-center justify-center">
-            <button className="border-2 px-6 py-3 rounded-3xl cursor-pointer transition-all duration-200 ease-in-out active:scale-95 bg-darker-purple text-white text-md mt-6"
-              onSubmit={
-                handleSubmit
-              }
-            >
+            <button className="border-2 px-6 py-3 rounded-3xl cursor-pointer transition-all duration-200 ease-in-out active:scale-95 bg-darker-purple text-white text-md mt-6">
               Submit
             </button>
           </div>
