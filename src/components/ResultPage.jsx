@@ -4,5 +4,4 @@ const ResultPage = () => {
         <div>ResultPage</div>
     )
 }
-
 export default ResultPage
