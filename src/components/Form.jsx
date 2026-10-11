@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Arrow from "../assets/BackArrowIcon.svg"
 import { Link } from "react-router-dom"
-import { findRate } from "../utils/calculateOvercharge"
+import { findRate, compareAmount } from "../utils/calculateOvercharge"
 
 const Form = () => {
   const [billAmount, setBillAmount] = useState("")
@@ -11,12 +11,14 @@ const Form = () => {
   const [tenure, setTenure] = useState("")
 
   function handleSubmit(e) {
-    e.preventDefault()
-    let userUnit = unit
+    e.preventDefault()//prevents the page from default refresh on clicking submit button
+    let userUnit = Number(unit)
     let userCategory = category
-    findRate(userUnit, userCategory)
+    let userElectricCharges = Number(electricCharges)
+    let rate = findRate(userUnit, userCategory)
+    compareAmount(userUnit, userElectricCharges, rate)
   }
-
+  
   return (
     <div className="bg-background h-screen font-sans">
       <div className="flex flex-col items-center ">
