@@ -5,7 +5,7 @@ import ResultPage from "./components/ResultPage"
 import "./config/slabConfig"
 
 function App() {
-
+  
   return (
     <>
       <Routes>

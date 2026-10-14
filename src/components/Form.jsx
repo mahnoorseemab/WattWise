@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Arrow from "../assets/BackArrowIcon.svg"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { findRate, compareAmount } from "../utils/calculateOvercharge"
 import useResultStore from "../store/useResultStore"
 
@@ -10,7 +10,8 @@ const Form = () => {
   const [unit, setUnit] = useState("")
   const [category, setCategory] = useState("")
   const [tenure, setTenure] = useState("")
-  const Result =  useResultStore((state) => state.userResult)
+  const Result = useResultStore((state) => state.userResult)
+  const navigate = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault()//prevents the page from default refresh on clicking submit button
@@ -18,8 +19,9 @@ const Form = () => {
     let userCategory = category
     let userElectricCharges = Number(electricCharges)
     let rate = findRate(userUnit, userCategory)
-    let result = compareAmount(userUnit, userElectricCharges, rate)
-    Result(result)
+    let data = compareAmount(userUnit, userElectricCharges, rate)
+    Result(data)
+    navigate("/resultPage")
     console.log("StoreResult:", useResultStore.getState().result)
   }
 
