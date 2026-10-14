@@ -2,6 +2,7 @@ import { useState } from "react"
 import Arrow from "../assets/BackArrowIcon.svg"
 import { Link } from "react-router-dom"
 import { findRate, compareAmount } from "../utils/calculateOvercharge"
+import useResultStore from "../store/useResultStore"
 
 const Form = () => {
   const [billAmount, setBillAmount] = useState("")
@@ -9,6 +10,7 @@ const Form = () => {
   const [unit, setUnit] = useState("")
   const [category, setCategory] = useState("")
   const [tenure, setTenure] = useState("")
+  const Result =  useResultStore((state) => state.userResult)
 
   function handleSubmit(e) {
     e.preventDefault()//prevents the page from default refresh on clicking submit button
@@ -16,9 +18,11 @@ const Form = () => {
     let userCategory = category
     let userElectricCharges = Number(electricCharges)
     let rate = findRate(userUnit, userCategory)
-    compareAmount(userUnit, userElectricCharges, rate)
+    let result = compareAmount(userUnit, userElectricCharges, rate)
+    Result(result)
+    console.log("StoreResult:", useResultStore.getState().result)
   }
-  
+
   return (
     <div className="bg-background h-screen font-sans">
       <div className="flex flex-col items-center ">

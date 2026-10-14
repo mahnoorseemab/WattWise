@@ -11,10 +11,15 @@ export function findRate(userUnit, userCategory) {
 
 export function compareAmount(userUnit, userElectricCharges, rate) {
     console.log("units:", userUnit, "rate:", rate, "userElectricCharges:", userElectricCharges)
-    let estimatedAmount;
-    estimatedAmount = userUnit * rate
+    let estimatedAmount = userUnit * rate
     let difference = userElectricCharges - estimatedAmount
-    console.log("difference:", difference)
-    return difference
+    console.log("userElectricCharges:", userElectricCharges, "estimatedAmount:", estimatedAmount, "difference:", difference)
+    return {
+        userElectricCharges: userElectricCharges,
+        userUnits: userUnit,
+        perUnitRate: rate,
+        estimatedAmount: estimatedAmount,
+        difference: difference
+    }
 }
 
