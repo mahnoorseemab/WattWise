@@ -30,9 +30,9 @@ const Form = () => {
       <div className="flex flex-col items-center ">
         <div className="flex relative">
           <Link to="/">
-            <img src={Arrow} className="mt-8 absolute right-[230%]" title="Back" alt="Arrow" />
+            <img src={Arrow} className="mt-8 absolute right-[200%]" title="Back" alt="Arrow" />
           </Link>
-          <h1 className="bg-gradient-to-r from-darkest-purple to-mid-purple bg-clip-text text-transparent font-bold text-4xl tracking-tighter mt-10">Check Your Electricity Bill!</h1>
+          <h1 className="bg-gradient-to-r from-darkest-purple to-mid-purple bg-clip-text text-transparent font-bold text-4xl tracking-wide mt-10">Check Your Electricity Bill!</h1>
         </div>
         <p className="text-darker-purple">Enter the details from your IESCO bill to compare it with an estimate based on official rates.</p>
       </div>
@@ -41,10 +41,10 @@ const Form = () => {
           handleSubmit
         }>
         <div className="flex items-center justify-center m-2 flex-col">
-          <div className="flex flex-col border-2 w-[50vw]">
-            <div className="flex flex-col p-4">
-              <label htmlFor="BillAmount">Total Amount of Bill</label>
-              <input className="border-2 p-2" type="number" placeholder="Enter the total amount of your bill"
+          <div className="flex flex-col border-gray-500 w-[40vw]">
+            <div className="flex flex-col gap-1.5 p-4">
+              <label className="text-darkest-purple text-xl" htmlFor="BillAmount">Total Amount of Bill</label>
+              <input className="border-2 border-mid-purple outline-deep-purple shadow-lg p-3 rounded-2xl" type="number" placeholder="Enter the total amount of your bill"
                 value={billAmount}
                 onChange={(e) =>
                   setBillAmount(e.target.value)
@@ -52,18 +52,18 @@ const Form = () => {
               />
             </div>
 
-            <div className="flex flex-col p-4">
-              <label htmlFor="charges">Electric Charges</label>
-              <input className="border-2 p-2" type="number" placeholder="Enter the electricity charges from your bill"
+            <div className="flex flex-col gap-1.5 p-4">
+              <label className="text-darkest-purple text-xl" htmlFor="charges">Net Electricity Charges</label>
+              <input className="border-2 p-3 rounded-2xl border-mid-purple outline-deep-purple" type="number" placeholder="Enter your net electricity charges from your bill"
                 value={electricCharges}
                 onChange={(e) => setElectricCharges(e.target.value)
                 } />
-              <label htmlFor="hint">Find this on your bill under the line for cost of electricity. Don't include taxes, fuel adjustments or other charges.</label>
+              <label className="text-deep-purple text-sm" htmlFor="hint">Find this on your bill in the section of Bill Charges Breakdown. Don't include taxes, fuel adjustments or other charges.</label>
             </div>
 
-            <div className="flex flex-col p-4">
-              <label htmlFor="BillAmount">Number of units used</label>
-              <input className="border-2 p-2" type="number" placeholder="Enter the number of units used (kWh)"
+            <div className="flex flex-col gap-1.5 p-4">
+              <label className="text-darkest-purple text-xl" htmlFor="BillAmount">Number of units used</label>
+              <input className="border-2 p-3 rounded-2xl border-mid-purple outline-deep-purple" type="number" placeholder="Enter the number of units used (kWh)"
                 value={unit}
                 onChange={(e) => {
                   setUnit(e.target.value);
@@ -71,9 +71,9 @@ const Form = () => {
                 } />
             </div>
 
-            <div className="flex flex-col p-4">
-              <label htmlFor="Category">Category</label>
-              <select name="Category" className="p-2 border-2"
+            <div className="flex flex-col gap-1.5 p-4">
+              <label className="text-darkest-purple text-xl" htmlFor="Category">Category</label>
+              <select name="Category" className="p-3 border-2 rounded-2xl text-gray-500 border-mid-purple outline-deep-purple"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)
                 }>
@@ -82,12 +82,12 @@ const Form = () => {
                 <option value="protected">Protected</option>
                 <option value="unProtected">UnProtected</option>
               </select>
-              <label htmlFor="hint">Check your bill for the tariff category and select the one that matches</label>
+              <label className="text-deep-purple text-sm" htmlFor="hint">Check your bill for the tariff category and select the one that matches</label>
             </div>
 
-            <div className="flex flex-col p-4">
-              <label htmlFor="tenure">Tenure</label>
-              <select name="Tenure" className="p-2 border-2"
+            <div className="flex flex-col gap-1.5 p-4">
+              <label className="text-darkest-purple text-xl" htmlFor="tenure">Tenure</label>
+              <select name="Tenure" className="p-3 border-2 rounded-2xl text-gray-500 border-mid-purple outline-deep-purple"
                 value={tenure}
                 onChange={(e) => setTenure(e.target.value)
                 }>
