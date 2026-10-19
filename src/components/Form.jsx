@@ -42,9 +42,9 @@ const Form = () => {
         }>
         <div className="flex items-center justify-center m-2 flex-col">
           <div className="flex flex-col border-gray-500 w-[40vw]">
-            <div className="flex flex-col gap-1.5 p-4">
-              <label className="text-darkest-purple text-xl" htmlFor="BillAmount">Total Amount of Bill</label>
-              <input className="border-2 border-mid-purple outline-deep-purple shadow-lg p-3 rounded-2xl" type="number" placeholder="Enter the total amount of your bill"
+            <div className="flex flex-col gap-1 p-3">
+              <label className="text-darkest-purple text-lg" htmlFor="BillAmount">Total Amount of Bill</label>
+              <input className="border-2 border-purple-300  outline-deep-purple p-3 rounded-2xl" type="number" placeholder="Enter the total amount of your bill"
                 value={billAmount}
                 onChange={(e) =>
                   setBillAmount(e.target.value)
@@ -52,18 +52,18 @@ const Form = () => {
               />
             </div>
 
-            <div className="flex flex-col gap-1.5 p-4">
-              <label className="text-darkest-purple text-xl" htmlFor="charges">Net Electricity Charges</label>
-              <input className="border-2 p-3 rounded-2xl border-mid-purple outline-deep-purple" type="number" placeholder="Enter your net electricity charges from your bill"
+            <div className="flex flex-col gap-1 p-3">
+              <label className="text-darkest-purple text-lg" htmlFor="charges">Net Electricity Charges</label>
+              <input className="border-2 p-3 rounded-2xl border-purple-300 outline-deep-purple" type="number" placeholder="Enter your net electricity charges from your bill"
                 value={electricCharges}
                 onChange={(e) => setElectricCharges(e.target.value)
                 } />
-              <label className="text-deep-purple text-sm" htmlFor="hint">Find this on your bill in the section of Bill Charges Breakdown. Don't include taxes, fuel adjustments or other charges.</label>
+              <label className="text-gray-500 text-sm" htmlFor="hint">Find this on your bill in the section of Bill Charges Breakdown. Don't include taxes, fuel adjustments or other charges.</label>
             </div>
 
-            <div className="flex flex-col gap-1.5 p-4">
-              <label className="text-darkest-purple text-xl" htmlFor="BillAmount">Number of units used</label>
-              <input className="border-2 p-3 rounded-2xl border-mid-purple outline-deep-purple" type="number" placeholder="Enter the number of units used (kWh)"
+            <div className="flex flex-col gap-1 p-3">
+              <label className="text-darkest-purple text-lg" htmlFor="BillAmount">Number of units used</label>
+              <input className="border-2 p-3 rounded-2xl border-purple-300 outline-deep-purple" type="number" placeholder="Enter the number of units used (kWh)"
                 value={unit}
                 onChange={(e) => {
                   setUnit(e.target.value);
@@ -71,9 +71,9 @@ const Form = () => {
                 } />
             </div>
 
-            <div className="flex flex-col gap-1.5 p-4">
-              <label className="text-darkest-purple text-xl" htmlFor="Category">Category</label>
-              <select name="Category" className="p-3 border-2 rounded-2xl text-gray-500 border-mid-purple outline-deep-purple"
+            <div className="flex flex-col gap-1 p-3">
+              <label className="text-darkest-purple text-lg" htmlFor="Category">Category</label>
+              <select name="Category" className="p-3 border-2 rounded-2xl text-gray-500 border-purple-300 outline-deep-purple"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)
                 }>
@@ -82,12 +82,12 @@ const Form = () => {
                 <option value="protected">Protected</option>
                 <option value="unProtected">UnProtected</option>
               </select>
-              <label className="text-deep-purple text-sm" htmlFor="hint">Check your bill for the tariff category and select the one that matches</label>
+              <label className="text-gray-600 text-sm" htmlFor="hint">Check your bill for the tariff category and select the one that matches</label>
             </div>
 
-            <div className="flex flex-col gap-1.5 p-4">
-              <label className="text-darkest-purple text-xl" htmlFor="tenure">Tenure</label>
-              <select name="Tenure" className="p-3 border-2 rounded-2xl text-gray-500 border-mid-purple outline-deep-purple"
+            <div className="flex flex-col gap-1 p-3">
+              <label className="text-darkest-purple text-lg" htmlFor="tenure">Tenure</label>
+              <select name="Tenure" className="p-3 border-2 rounded-2xl text-gray-500 border-purple-300 outline-deep-purple"
                 value={tenure}
                 onChange={(e) => setTenure(e.target.value)
                 }>

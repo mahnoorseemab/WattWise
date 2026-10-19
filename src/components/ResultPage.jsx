@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import Arrow from "../assets/BackArrowIcon.svg"
 
 const ResultPage = () => {
-    let displayResult = useResultStore.getState().result
+    let displayResult = useResultStore((state) => state.result)
     console.log(displayResult)
 
     let content;
