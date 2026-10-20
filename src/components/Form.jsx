@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Arrow from "../assets/BackArrowIcon.svg"
+import Arrow from "../assets/LeftArrow.svg"
 import { Link, useNavigate } from "react-router-dom"
 import { findRate, compareAmount } from "../utils/calculateOvercharge"
 import useResultStore from "../store/useResultStore"

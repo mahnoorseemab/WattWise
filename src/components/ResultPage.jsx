@@ -1,6 +1,7 @@
 import useResultStore from "../store/useResultStore"
-import { Link, Navigate, useNavigate } from "react-router-dom"
-import Arrow from "../assets/BackArrowIcon.svg"
+import { Link, useNavigate } from "react-router-dom"
+import Arrow from "../assets/LeftArrow.svg"
+import RightArrow from "../assets/RightArrow.svg"
 
 const ResultPage = () => {
     let displayResult = useResultStore((state) => state.result)
@@ -69,13 +70,14 @@ const ResultPage = () => {
 
     if (displayResult.difference > 0) {
         generateScript = (
-            <button className="border-2 p-2 hover:cursor-pointer active:scale-95"
+            <button className="mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-3xl bg-darker-purple px-6 py-3 text-lg text-white transition-all duration-200 ease-in-out active:scale-95"
                 onClick={
-                    ()=>{
+                    () => {
                         navigate("/scriptPage")
-                    } 
+                    }
                 }>
                 Generate Script
+                <img src={RightArrow} className="animate-pulse h-10 w-10" alt="" />
             </button>
         )
     }
@@ -94,7 +96,7 @@ const ResultPage = () => {
             <div className="flex justify-center">
                 {content}
             </div>
-            <div className="flex justify-center items-center pt-6">
+            <div className="flex justify-center items-center">
                 {generateScript}
             </div>
         </div>
