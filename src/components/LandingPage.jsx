@@ -18,8 +18,8 @@ const LandingPage = () => {
             </p>
 
             <div className="mt-6 flex justify-center">
-                <p className="max-w-md rounded-2xl border border-purple-200 bg-white/60 px-4 py-2 text-center text-xs text-purple-800 md:text-sm">
-                    Estimate based on IESCO's official tariff rates. Works for IESCO bills only. <br /> (checked 4 Oct 2026)
+                <p className="px-4 py-2 text-center text-sm text-gray-600 md:text-sm">
+                    Estimate based on IESCO's official tariff rates. Works for IESCO bills only. <br /> (checked on 4th Oct 2026)
                 </p>
             </div>
 
