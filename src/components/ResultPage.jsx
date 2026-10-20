@@ -1,12 +1,14 @@
 import useResultStore from "../store/useResultStore"
-import { Link } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import Arrow from "../assets/BackArrowIcon.svg"
 
 const ResultPage = () => {
     let displayResult = useResultStore((state) => state.result)
     console.log(displayResult)
 
+    let navigate = useNavigate()
     let content;
+    let generateScript;
     if (!displayResult) {
         content = (
             <p className="text-center text-sm text-gray-500">
@@ -65,13 +67,35 @@ const ResultPage = () => {
         )
     }
 
+    if (displayResult.difference > 0) {
+        generateScript = (
+            <button className="border-2 p-2 hover:cursor-pointer active:scale-95"
+                onClick={
+                    ()=>{
+                        navigate("/scriptPage")
+                    } 
+                }>
+                Generate Script
+            </button>
+        )
+    }
+    else if (displayResult.difference <= 0) {
+        generateScript = (
+            <div>
+                No script is needed here because your charges are not higher than the estimated amount.
+            </div>
+        )
+    }
     return (
-        <div className="bg-background relative min-h-screen px-4 pb-16 pt-24">
+        <div className="bg-background relative min-h-screen px-4 pb-16 pt-24 ">
             <Link to="/form" className="absolute left-[10%] top-8">
                 <img src={Arrow} title="Back" alt="Back" />
             </Link>
             <div className="flex justify-center">
                 {content}
+            </div>
+            <div className="flex justify-center items-center pt-6">
+                {generateScript}
             </div>
         </div>
     )
