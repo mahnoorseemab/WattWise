@@ -6,7 +6,7 @@ import ScriptPage from "./components/ScriptPage"
 import "./config/slabConfig"
 
 function App() {
-
+  
   return (
     <>
       <Routes>

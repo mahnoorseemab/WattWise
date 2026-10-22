@@ -10,8 +10,16 @@ const Form = () => {
   const [unit, setUnit] = useState("")
   const [category, setCategory] = useState("")
   const [tenure, setTenure] = useState("")
+
+  const tenureAmount = {
+    tenure: tenure,
+    amount: Number(billAmount)
+  }
+
   const Result = useResultStore((state) => state.userResult)
+  const tenureAndAmount = useResultStore((state) => state.inputs)
   const navigate = useNavigate()
+
 
   function handleSubmit(e) {
     e.preventDefault()//prevents the page from default refresh on clicking submit button
@@ -20,10 +28,12 @@ const Form = () => {
     let userElectricCharges = Number(electricCharges)
     let rate = findRate(userUnit, userCategory)
     let data = compareAmount(userUnit, userElectricCharges, rate)
+    tenureAndAmount(tenureAmount)
     Result(data)
     navigate("/resultPage")
     console.log("StoreResult:", useResultStore.getState().result)
   }
+
 
   return (
     <div className="flex flex-col bg-background h-screen font-sans gap-6">

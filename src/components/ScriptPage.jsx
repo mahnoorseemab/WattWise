@@ -1,4 +1,3 @@
-
 const ScriptPage = () => {
   return (
     <div>ScriptPage</div>

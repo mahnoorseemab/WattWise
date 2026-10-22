@@ -7,6 +7,9 @@ const ResultPage = () => {
     let displayResult = useResultStore((state) => state.result)
     console.log(displayResult)
 
+    let inputResult = useResultStore((state) => state.inputData) 
+    console.log(inputResult)
+
     let navigate = useNavigate()
     let content;
     let generateScript;
