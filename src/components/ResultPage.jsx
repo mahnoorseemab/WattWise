@@ -7,8 +7,22 @@ const ResultPage = () => {
     let displayResult = useResultStore((state) => state.result)
     console.log(displayResult)
 
-    let inputResult = useResultStore((state) => state.inputData) 
+    let inputResult = useResultStore((state) => state.inputData)
     console.log(inputResult)
+
+    let scriptData = {
+        totalAmount: inputResult.amount,
+        userElectricCharges: displayResult.userElectricCharges,
+        userUnits: displayResult.userUnits,
+        perUnitRate: displayResult.perUnitRate,
+        userCategory: inputResult.category,
+        userTenure: inputResult.tenure,
+        difference: displayResult.difference,
+        estimatedAmount: displayResult.estimatedAmount
+    }
+    console.log(scriptData)
+
+    
 
     let navigate = useNavigate()
     let content;

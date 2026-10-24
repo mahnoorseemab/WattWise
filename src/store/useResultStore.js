@@ -9,10 +9,10 @@ const useResultStore = create(
             userResult: (data) => set({ result: data }),
             inputs: (tenureAmount) => set({ inputData: tenureAmount })
         }),
+
         {
             name: "resultStorage",
             storage: createJSONStorage(() => sessionStorage)
-
         }
     )
 )

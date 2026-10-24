@@ -13,7 +13,8 @@ const Form = () => {
 
   const tenureAmount = {
     tenure: tenure,
-    amount: Number(billAmount)
+    amount: Number(billAmount),
+    category: category
   }
 
   const Result = useResultStore((state) => state.userResult)
@@ -33,7 +34,6 @@ const Form = () => {
     navigate("/resultPage")
     console.log("StoreResult:", useResultStore.getState().result)
   }
-
 
   return (
     <div className="flex flex-col bg-background h-screen font-sans gap-6">
