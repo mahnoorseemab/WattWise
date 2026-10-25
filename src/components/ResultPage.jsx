@@ -22,7 +22,18 @@ const ResultPage = () => {
     }
     console.log(scriptData)
 
-    
+    async function sendScriptData(scriptData) {
+        console.log("Scriptdata:", scriptData)
+        const response = await fetch("/api/script", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(scriptData)//convert obj into JSON Text
+        })
+        const script = await response.json()//convert JSON Text into obj
+        console.log(script)
+    }
 
     let navigate = useNavigate()
     let content;
@@ -90,6 +101,7 @@ const ResultPage = () => {
             <button className="mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-3xl bg-darker-purple px-6 py-3 text-lg text-white transition-all duration-200 ease-in-out active:scale-95"
                 onClick={
                     () => {
+                        sendScriptData(scriptData)
                         navigate("/scriptPage")
                     }
                 }>
@@ -106,7 +118,7 @@ const ResultPage = () => {
         )
     }
     return (
-        <div className="bg-background relative min-h-screen px-4 pb-16 pt-24 ">
+        <div className="bg-background relative min-h-screen px-4 pb-16 pt-24">
             <Link to="/form" className="absolute left-[10%] top-8">
                 <img src={Arrow} title="Back" alt="Back" />
             </Link>
