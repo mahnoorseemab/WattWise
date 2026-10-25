@@ -40,7 +40,7 @@ const Form = () => {
       <div className="flex flex-col items-center ">
         <div className="flex relative">
           <Link to="/">
-            <img src={Arrow} className="mt-8 absolute right-[200%]" title="Back" alt="Arrow" />
+            <img src={Arrow} className="mt-8 absolute right-[171%]" title="Back" alt="Arrow" />
           </Link>
           <h1 className=" text-darkest-purple font-semibold text-3xl tracking-wide mt-10">Fill the details of your Electricity Bill!</h1>
         </div>
