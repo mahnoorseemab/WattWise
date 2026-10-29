@@ -19,7 +19,7 @@ const LandingPage = () => {
 
             <div className="mt-6 flex justify-center">
                 <p className="px-4 py-2 text-center text-sm text-gray-600 md:text-sm">
-                    Estimate based on IESCO's official tariff rates. Works for IESCO bills only. <br /> (checked on 4th Oct 2026)
+                    Estimate based on IESCO's official tariff rates. Works for IESCO bills only. <br /> (checked on 4th Oct 2026) <br /> Residential only!
                 </p>
             </div>
 

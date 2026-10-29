@@ -6,6 +6,7 @@ const useResultStore = create(
     persist(
         (set) => ({
             result: null,
+            inputData: null,
             userResult: (data) => set({ result: data }),
             inputs: (tenureAmount) => set({ inputData: tenureAmount })
         }),

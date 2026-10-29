@@ -5,47 +5,32 @@ import RightArrow from "../assets/RightArrow.svg"
 
 const ResultPage = () => {
     let displayResult = useResultStore((state) => state.result)
-    console.log(displayResult)
-
     let inputResult = useResultStore((state) => state.inputData)
-    console.log(inputResult)
-
-    let scriptData = {
-        totalAmount: inputResult.amount,
-        userElectricCharges: displayResult.userElectricCharges,
-        userUnits: displayResult.userUnits,
-        perUnitRate: displayResult.perUnitRate,
-        userCategory: inputResult.category,
-        userTenure: inputResult.tenure,
-        difference: displayResult.difference,
-        estimatedAmount: displayResult.estimatedAmount
-    }
-    console.log(scriptData)
-
-    async function sendScriptData(scriptData) {
-        console.log("Scriptdata:", scriptData)
-        const response = await fetch("/api/script", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(scriptData)//convert obj into JSON Text
-        })
-        const script = await response.json()//convert JSON Text into obj
-        console.log(script)
-    }
-
     let navigate = useNavigate()
     let content;
     let generateScript;
-    if (!displayResult) {
+    let scriptData;
+
+    if (!displayResult && !inputResult) {
         content = (
             <p className="text-center text-sm text-gray-500">
-                No result to show yet.
+                No results to show yet.
             </p>
         )
     }
     else {
+        scriptData = {
+            totalAmount: inputResult.amount,
+            userElectricCharges: displayResult.userElectricCharges,
+            userUnits: displayResult.userUnits,
+            perUnitRate: displayResult.perUnitRate,
+            userCategory: inputResult.category,
+            userTenure: inputResult.tenure,
+            difference: displayResult.difference,
+            estimatedAmount: displayResult.estimatedAmount
+        }
+        console.log(scriptData)
+
         content = (
             <div className="flex w-full max-w-md flex-col gap-6">
                 <div className="text-center">
@@ -94,29 +79,50 @@ const ResultPage = () => {
                 </div>
             </div>
         )
+
+        async function sendScriptData(scriptData) {
+            console.log("Scriptdata:", scriptData)
+            const response = await fetch("/api/script", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(scriptData)//convert obj into JSON Text
+            })
+            if (response.ok) {
+                navigate("/scriptPage")
+
+            } else {
+                console.log("Wrong data!")
+            }
+            const script = await response.json()//convert JSON Text into obj
+            console.log(script)
+        }
+
+        {
+            if (displayResult.difference > 0) {
+                generateScript = (
+                    <button className="mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-3xl bg-darker-purple px-6 py-3 text-lg text-white transition-all duration-200 ease-in-out active:scale-95"
+                        onClick={
+                            () => {
+                                sendScriptData(scriptData)
+                            }
+                        }>
+                        Generate Script
+                        <img src={RightArrow} className="animate-pulse h-10 w-10" alt="" />
+                    </button>
+                )
+            }
+            else if (displayResult.difference <= 0) {
+                generateScript = (
+                    <div>
+                        No script is needed here because your charges are not higher than the estimated amount.
+                    </div>
+                )
+            }
+        }
     }
 
-    if (displayResult.difference > 0) {
-        generateScript = (
-            <button className="mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-3xl bg-darker-purple px-6 py-3 text-lg text-white transition-all duration-200 ease-in-out active:scale-95"
-                onClick={
-                    () => {
-                        sendScriptData(scriptData)
-                        navigate("/scriptPage")
-                    }
-                }>
-                Generate Script
-                <img src={RightArrow} className="animate-pulse h-10 w-10" alt="" />
-            </button>
-        )
-    }
-    else if (displayResult.difference <= 0) {
-        generateScript = (
-            <div>
-                No script is needed here because your charges are not higher than the estimated amount.
-            </div>
-        )
-    }
     return (
         <div className="bg-background relative min-h-screen px-4 pb-16 pt-24">
             <Link to="/form" className="absolute left-[10%] top-8">

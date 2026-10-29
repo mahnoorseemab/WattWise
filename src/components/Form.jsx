@@ -21,7 +21,6 @@ const Form = () => {
   const tenureAndAmount = useResultStore((state) => state.inputs)
   const navigate = useNavigate()
 
-
   function handleSubmit(e) {
     e.preventDefault()//prevents the page from default refresh on clicking submit button
     let userUnit = Number(unit)
