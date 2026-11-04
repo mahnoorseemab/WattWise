@@ -98,7 +98,6 @@ const ResultPage = () => {
             const script = await response.json()//convert JSON Text into obj
             console.log(script)
         }
-
         {
             if (displayResult.difference > 0) {
                 generateScript = (
