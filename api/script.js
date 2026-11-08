@@ -1,4 +1,5 @@
 import slabs from "../src/config/slabConfig.js"
+import { findRate, compareAmount } from "../src/utils/calculateOverCharge.js"
 
 export default function handler(req, res) {
     const unitsLimit = 5000
@@ -20,5 +21,12 @@ export default function handler(req, res) {
     if (req.body.userTenure !== "less-than-1" && req.body.userTenure !== "1-5" && req.body.userTenure !== "5-plus") {
         return res.status(400).json({ error: "Incorrect Data" })
     }
+    const rate = findRate(req.body.userUnits, req.body.userCategory)
+    if (rate === undefined) {
+        return res.status(400).json({ error: "Incorrect Data" })
+    }
+    const result = compareAmount(req.body.userUnits, req.body.userElectricCharges, rate)
+    console.log("Result:", result)
+
     return res.status(200).json({ message: "ok" })
 }

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Arrow from "../assets/LeftArrow.svg"
 import { Link, useNavigate } from "react-router-dom"
-import { findRate, compareAmount } from "../utils/calculateOvercharge"
+import { findRate, compareAmount } from "../utils/calculateOverCharge"
 import useResultStore from "../store/useResultStore"
 
 const Form = () => {
@@ -31,7 +31,6 @@ const Form = () => {
     tenureAndAmount(tenureAmount)
     Result(data)
     navigate("/resultPage")
-    console.log("StoreResult:", useResultStore.getState().result)
   }
 
   return (
