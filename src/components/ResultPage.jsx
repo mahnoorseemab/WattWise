@@ -91,7 +91,6 @@ const ResultPage = () => {
             })
             if (response.ok) {
                 navigate("/scriptPage")
-
             } else {
                 console.log("Wrong data!")
             }
