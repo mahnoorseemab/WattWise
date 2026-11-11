@@ -120,7 +120,7 @@ const ResultPage = () => {
             }
         }
     }
-
+    
     return (
         <div className="bg-background relative min-h-screen px-4 pb-16 pt-24">
             <Link to="/form" className="absolute left-[10%] top-8">

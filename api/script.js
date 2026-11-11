@@ -41,7 +41,7 @@ export default async function handler(req, res) {
     }
     const result = compareAmount(req.body.userUnits, req.body.userElectricCharges, rate)
     console.log("Result:", result)
-
+    
     const scriptPrompt = `You are helping a residential electricity customer in Pakistan write a message to IESCO customer support. The customer compared their bill with an estimate calculated from official IESCO slab rates and found a difference. Write the message they will send or read out. 
 
     FACTS (use only these; do not add or change any number): 
@@ -72,14 +72,15 @@ export default async function handler(req, res) {
     TONE EXAMPLE (about a different topic on purpose; copy only its calm, humble tone): 
 
     "Dear Support Team, I hope you are well. I was going through my internet invoice and had a question about one of the lines. I may be reading it wrongly, so I would be grateful if you could walk me through it. Thank you for your time.`
-
+    console.time("gemini")
     let finalScript
     try {
-        finalScript = await ai.models.generateContent({
-            model,
-            contents: scriptPrompt,
+        finalScript = await ai.interactions.create({
+            model, input: scriptPrompt, generation_config: {
+                thinking_level: "low"
+            }
         })
-        console.log(finalScript.text)
+        console.log(finalScript)
     }
     catch (error) {
         console.log(error)
