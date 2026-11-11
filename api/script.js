@@ -41,7 +41,7 @@ export default async function handler(req, res) {
     }
     const result = compareAmount(req.body.userUnits, req.body.userElectricCharges, rate)
     console.log("Result:", result)
-    
+
     const scriptPrompt = `You are helping a residential electricity customer in Pakistan write a message to IESCO customer support. The customer compared their bill with an estimate calculated from official IESCO slab rates and found a difference. Write the message they will send or read out. 
 
     FACTS (use only these; do not add or change any number): 
@@ -80,11 +80,18 @@ export default async function handler(req, res) {
                 thinking_level: "low"
             }
         })
+        console.timeEnd("gemini")
         console.log(finalScript)
+        return res.status(200).json({ script: finalScript.output_text })
     }
     catch (error) {
-        console.log(error)
+        console.log(error.status, error.message)
+        if (error.status === 429) {
+            return res.status(429).json({ error: "Daily limit reached. Please try again later." })
+        }
+        if (error.status === 503) {
+            return res.status(503).json({ error: "The AI service is busy. Please try again in a minute." })
+        }
+        return res.status(500).json({ error: "Something went wrong. Please try again later" })
     }
-    console.timeEnd("gemini")
-    return res.status(200).json({ finalScript })
 }

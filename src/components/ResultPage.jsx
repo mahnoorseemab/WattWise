@@ -6,6 +6,7 @@ import RightArrow from "../assets/RightArrow.svg"
 const ResultPage = () => {
     let displayResult = useResultStore((state) => state.result)
     let inputResult = useResultStore((state) => state.inputData)
+    let sendScript = useResultStore((state) => state.setScript)
     let navigate = useNavigate()
     let content;
     let generateScript;
@@ -53,7 +54,7 @@ const ResultPage = () => {
 
                 <div className="grid grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1 rounded-xl border border-purple-200 bg-white p-4">
-                        <span className="text-xs text-gray-600">Your Electric Charges</span>
+                        <span className="text-xs text-gray-600">User Electric Charges</span>
                         <span className="text-xl font-semibold text-deep-purple">
                             Rs. {displayResult.userElectricCharges}
                         </span>
@@ -90,12 +91,20 @@ const ResultPage = () => {
                 body: JSON.stringify(scriptData)//convert obj into JSON Text
             })
             if (response.ok) {
+                const scriptContent = await response.json()//convert JSON Text into obj
+                const getScriptContent = scriptContent.script
+                sendScript(getScriptContent)
+                console.log(scriptContent)
                 navigate("/scriptPage")
-            } else {
+            } else if (response.status === 400) {
                 console.log("Wrong data!")
+            } else if (response.status === 429) {
+                console.log("Daily limit reached. Please try again later.")
+            } else if (response.status === 503) {
+                console.log("The AI service is busy. Please try again in a minute.")
+            } else if (response.status === 500) {
+                console.log("Something went wrong. Please try again later")
             }
-            const script = await response.json()//convert JSON Text into obj
-            console.log(script)
         }
         {
             if (displayResult.difference > 0) {
@@ -120,7 +129,7 @@ const ResultPage = () => {
             }
         }
     }
-    
+
     return (
         <div className="bg-background relative min-h-screen px-4 pb-16 pt-24">
             <Link to="/form" className="absolute left-[10%] top-8">

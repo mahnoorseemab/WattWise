@@ -8,7 +8,8 @@ const useResultStore = create(
             result: null,
             inputData: null,
             userResult: (data) => set({ result: data }),
-            inputs: (tenureAmount) => set({ inputData: tenureAmount })
+            inputs: (tenureAmount) => set({ inputData: tenureAmount }),
+            setScript: (getScriptContent) => set({ script: getScriptContent })
         }),
         {
             name: "resultStorage",

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Arrow from "../assets/LeftArrow.svg"
 import { Link, useNavigate } from "react-router-dom"
-import { findRate, compareAmount } from "../utils/calculateOverCharge"
+import { findRate, compareAmount } from "../utils/calculateOverCharge.js"
 import useResultStore from "../store/useResultStore"
 
 const Form = () => {
