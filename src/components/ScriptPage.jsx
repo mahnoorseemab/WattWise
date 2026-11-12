@@ -1,9 +1,17 @@
 import Arrow from "../assets/LeftArrow.svg"
 import { Link } from "react-router-dom"
 import useResultStore from "../store/useResultStore"
+import { useState } from "react"
 
 const ScriptPage = () => {
+  const [copy, setCopy] = useState(false)
+
   const receiveScript = useResultStore((state) => state.script)
+
+  async function copyText(receiveScript) {
+    await navigator.clipboard.writeText(receiveScript)
+    setCopy(true)
+  }
 
   return (
     <div className="bg-background relative min-h-screen px-4 pb-16 pt-24">
@@ -32,8 +40,10 @@ const ScriptPage = () => {
             <p className="text-xs text-gray-500">
               Replace [Your Name] and [Consumer Number] before sending.
             </p>
-            <button className="rounded-full bg-darker-purple px-5 py-2 text-sm font-medium text-white shadow transition hover:bg-purple-700 active:scale-95 hover:cursor-pointer">
-              Copy
+            <button className="rounded-full bg-darker-purple px-5 py-2 text-sm font-medium text-white shadow transition hover:bg-purple-700 active:scale-95 hover:cursor-pointer" onClick={() => {
+              copyText(receiveScript)
+            }}>
+              {copy ? "Copied" : "Copy"}
             </button>
           </div>
         </div>

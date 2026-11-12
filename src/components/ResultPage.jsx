@@ -89,7 +89,6 @@ const ResultPage = () => {
         async function sendScriptData(scriptData) {
             setIsLoading(true)
             try {
-
                 console.log("Scriptdata:", scriptData)
                 const response = await fetch("/api/script", {
                     method: "POST",
@@ -112,6 +111,8 @@ const ResultPage = () => {
                 } else if (response.status === 500) {
                     setErrorMessage("Something went wrong. Please try again later")
                 }
+            } catch {
+                setErrorMessage("Could not reach the server. Please check your connection and try again.")
             } finally {
                 setIsLoading(false)
             }
