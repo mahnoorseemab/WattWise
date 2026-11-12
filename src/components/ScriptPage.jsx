@@ -32,7 +32,7 @@ const ScriptPage = () => {
             <p className="text-xs text-gray-500">
               Replace [Your Name] and [Consumer Number] before sending.
             </p>
-            <button className="rounded-full bg-purple-800 px-5 py-2 text-sm font-medium text-white shadow transition hover:bg-purple-700 active:scale-95 hover:cursor-pointer">
+            <button className="rounded-full bg-darker-purple px-5 py-2 text-sm font-medium text-white shadow transition hover:bg-purple-700 active:scale-95 hover:cursor-pointer">
               Copy
             </button>
           </div>

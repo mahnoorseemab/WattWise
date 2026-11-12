@@ -10,6 +10,7 @@ const Form = () => {
   const [unit, setUnit] = useState("")
   const [category, setCategory] = useState("")
   const [tenure, setTenure] = useState("")
+  const [error, setError] = useState("")
 
   const tenureAmount = {
     tenure: tenure,
@@ -23,6 +24,14 @@ const Form = () => {
 
   function handleSubmit(e) {
     e.preventDefault()//prevents the page from default refresh on clicking submit button
+
+    if (billAmount === "" || electricCharges === "" || unit === "" || category === "" || tenure === "") {
+      setError("Please fill in all fields")
+      return
+    } else {
+      setError("")
+    }
+
     let userUnit = Number(unit)
     let userCategory = category
     let userElectricCharges = Number(electricCharges)
@@ -34,7 +43,7 @@ const Form = () => {
   }
 
   return (
-    <div className="flex flex-col bg-background h-screen font-sans gap-6">
+    <div className="flex flex-col bg-background h-screen font-sans gap-4">
       <div className="flex flex-col items-center ">
         <div className="flex relative">
           <Link to="/">
@@ -54,18 +63,20 @@ const Form = () => {
               <label className="text-darkest-purple text-lg" htmlFor="BillAmount">Total Amount of Bill</label>
               <input className="border-2 border-purple-200 bg-white outline-deep-purple p-3 rounded-2xl " type="number" placeholder="Enter the total amount of your bill"
                 value={billAmount}
-                onChange={(e) =>
-                  setBillAmount(e.target.value)
-                }
-              />
+                onChange={(e) => {
+                  setBillAmount(e.target.value);
+                  setError("")
+                }} />
             </div>
 
             <div className="flex flex-col gap-1 p-3">
               <label className="text-darkest-purple text-lg" htmlFor="charges">Net Electricity Charges</label>
               <input className="border-2 p-3 rounded-2xl border-purple-200 bg-white outline-deep-purple" type="number" placeholder="Enter your net electricity charges from your bill"
                 value={electricCharges}
-                onChange={(e) => setElectricCharges(e.target.value)
-                } />
+                onChange={(e) => {
+                  setElectricCharges(e.target.value);
+                  setError("")
+                }} />
               <label className="text-gray-500 text-xs" htmlFor="hint">Find this on your bill in the section of Bill Charges Breakdown. Don't include taxes, fuel adjustments or other charges.</label>
             </div>
 
@@ -75,6 +86,7 @@ const Form = () => {
                 value={unit}
                 onChange={(e) => {
                   setUnit(e.target.value);
+                  setError("")
                 }
                 } />
             </div>
@@ -83,8 +95,10 @@ const Form = () => {
               <label className="text-darkest-purple text-lg" htmlFor="Category">Category</label>
               <select name="Category" className="p-3 border-2 rounded-2xl text-gray-500 border-purple-200 bg-white outline-deep-purple"
                 value={category}
-                onChange={(e) => setCategory(e.target.value)
-                }>
+                onChange={(e) => {
+                  setCategory(e.target.value);
+                  setError("")
+                }}>
                 <option value="">Choose your category</option>
                 <option value="lifeLine">Lifeline</option>
                 <option value="protected">Protected</option>
@@ -97,8 +111,10 @@ const Form = () => {
               <label className="text-darkest-purple text-lg" htmlFor="tenure">Tenure</label>
               <select name="Tenure" className="p-3 border-2 rounded-2xl text-gray-500 border-purple-200 bg-white outline-deep-purple"
                 value={tenure}
-                onChange={(e) => setTenure(e.target.value)
-                }>
+                onChange={(e) => {
+                  setTenure(e.target.value);
+                  setError("")
+                }}>
                 <option value="">Choose your tenure</option>
                 <option value="less-than-1">Less than 1 year</option>
                 <option value="1-5">1 Year - 5 Years</option>
@@ -107,14 +123,17 @@ const Form = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center">
             <button className="border-2 px-6 py-3 rounded-3xl cursor-pointer transition-all duration-200 ease-in-out active:scale-95 bg-darker-purple text-white text-md mt-6">
               Submit
             </button>
+            <div className="text-red-500 text-sm mt-2">
+              {error}
+            </div>
           </div>
-        </div>
-      </form>
-    </div>
+        </div >
+      </form >
+    </div >
   )
 }
 

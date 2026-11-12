@@ -2,8 +2,13 @@ import useResultStore from "../store/useResultStore"
 import { Link, useNavigate } from "react-router-dom"
 import Arrow from "../assets/LeftArrow.svg"
 import RightArrow from "../assets/RightArrow.svg"
+import { useState } from "react"
 
 const ResultPage = () => {
+
+    const [errorMessage, setErrorMessage] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
+
     let displayResult = useResultStore((state) => state.result)
     let inputResult = useResultStore((state) => state.inputData)
     let sendScript = useResultStore((state) => state.setScript)
@@ -82,47 +87,63 @@ const ResultPage = () => {
         )
 
         async function sendScriptData(scriptData) {
-            console.log("Scriptdata:", scriptData)
-            const response = await fetch("/api/script", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(scriptData)//convert obj into JSON Text
-            })
-            if (response.ok) {
-                const scriptContent = await response.json()//convert JSON Text into obj
-                const getScriptContent = scriptContent.script
-                sendScript(getScriptContent)
-                console.log(scriptContent)
-                navigate("/scriptPage")
-            } else if (response.status === 400) {
-                console.log("Wrong data!")
-            } else if (response.status === 429) {
-                console.log("Daily limit reached. Please try again later.")
-            } else if (response.status === 503) {
-                console.log("The AI service is busy. Please try again in a minute.")
-            } else if (response.status === 500) {
-                console.log("Something went wrong. Please try again later")
+            setIsLoading(true)
+            try {
+
+                console.log("Scriptdata:", scriptData)
+                const response = await fetch("/api/script", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(scriptData)//convert obj into JSON Text
+                })
+                if (response.ok) {
+                    const scriptContent = await response.json()//convert JSON Text into obj
+                    const getScriptContent = scriptContent.script
+                    sendScript(getScriptContent)
+                    navigate("/scriptPage")
+                } else if (response.status === 400) {
+                    setErrorMessage("Data is not correct, please recheck your data")
+                } else if (response.status === 429) {
+                    setErrorMessage("Too many requests right now. Please try again in a few minutes.")
+                } else if (response.status === 503) {
+                    setErrorMessage("The AI service is busy. Please try again in a minute.")
+                } else if (response.status === 500) {
+                    setErrorMessage("Something went wrong. Please try again later")
+                }
+            } finally {
+                setIsLoading(false)
             }
         }
         {
             if (displayResult.difference > 0) {
                 generateScript = (
-                    <button className="mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-3xl bg-darker-purple px-6 py-3 text-lg text-white transition-all duration-200 ease-in-out active:scale-95"
-                        onClick={
-                            () => {
-                                sendScriptData(scriptData)
-                            }
-                        }>
-                        Generate Script
-                        <img src={RightArrow} className="animate-pulse h-10 w-10" alt="" />
+                    <button
+                        className="mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-3xl bg-darker-purple px-6 py-3 text-lg text-white transition-all duration-200 ease-in-out enabled:active:scale-95 disabled:cursor-not-allowed disabled:opacity-80"
+                        disabled={isLoading}
+                        aria-busy={isLoading}
+                        onClick={() => {
+                            sendScriptData(scriptData)
+                        }}
+                    >
+                        {isLoading ? (
+                            <>
+                                <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                                Generating...
+                            </>
+                        ) : (
+                            <>
+                                Generate Script
+                                <img src={RightArrow} className="animate-pulse h-10 w-10" alt="" />
+                            </>
+                        )}
                     </button>
                 )
             }
             else if (displayResult.difference <= 0) {
                 generateScript = (
-                    <div>
+                    <div className="mt-3 text-gray-600 text-sm">
                         No script is needed here because your charges are not higher than the estimated amount.
                     </div>
                 )
@@ -141,6 +162,31 @@ const ResultPage = () => {
             <div className="flex justify-center items-center">
                 {generateScript}
             </div>
+            {errorMessage && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
+                    role="dialog"
+                    aria-modal="true"
+                >
+                    <div className="w-full max-w-sm rounded-2xl border border-purple-200 bg-white p-6 shadow-xl">
+                        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 text-2xl font-bold text-darker-purple">
+                            !
+                        </div>
+                        <h2 className="text-center text-lg font-semibold text-darkest-purple">
+                            Something went wrong
+                        </h2>
+                        <p className="mt-2 text-center text-sm text-gray-600">
+                            {errorMessage}
+                        </p>
+                        <button
+                            className="mx-auto mt-6 block cursor-pointer rounded-3xl bg-darker-purple px-6 py-2 text-sm text-white transition-all duration-200 ease-in-out active:scale-95"
+                            onClick={() => setErrorMessage("")}
+                        >
+                            Got it
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
