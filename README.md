@@ -32,7 +32,7 @@ If the estimate is equal to or higher than the user's charges, no AI button is s
 |---|---|
 | UI | React, Vite, Tailwind CSS v4 |
 | Routing | react-router-dom |
-| Shared state | Zustand (with `persist`, sessionStorage) |
+| State Management | Zustand (with `persist`, sessionStorage) |
 | Backend | One Vercel serverless function (`api/script.js`) |
 | AI | Gemini free tier via `@google/genai`, model `gemini-3.5-flash-lite`, `ai.interactions.create` |
 | Hosting | Vercel (Hobby plan), auto-deploy from GitHub `main` |
