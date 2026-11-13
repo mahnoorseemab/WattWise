@@ -15,7 +15,6 @@ const tenureLabels = {
 }
 
 export default async function handler(req, res) {
-    console.log("handler hit")
     const unitsLimit = 5000
     const rateLimit = slabs.unProtected[slabs.unProtected.length - 1].rate
     const chargesLimit = rateLimit * unitsLimit
@@ -40,7 +39,6 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: "Incorrect Data" })
     }
     const result = compareAmount(req.body.userUnits, req.body.userElectricCharges, rate)
-    console.log("Result:", result)
 
     const scriptPrompt = `You are helping a residential electricity customer in Pakistan write a message to IESCO customer support. The customer compared their bill with an estimate calculated from official IESCO slab rates and found a difference. Write the message they will send or read out. 
 
@@ -68,11 +66,10 @@ export default async function handler(req, res) {
     - Written so that it works both as an email body and as something said on a phone call. 
     - Between 100 and 150 words. No subject line, no bullet points, no markdown.
     - Output only the message text, with no explanation before or after it. 
-
+    
     TONE EXAMPLE (about a different topic on purpose; copy only its calm, humble tone): 
 
     "Dear Support Team, I hope you are well. I was going through my internet invoice and had a question about one of the lines. I may be reading it wrongly, so I would be grateful if you could walk me through it. Thank you for your time.`
-    console.time("gemini")
     let finalScript
     try {
         finalScript = await ai.interactions.create({
@@ -80,12 +77,10 @@ export default async function handler(req, res) {
                 thinking_level: "low"
             }
         })
-        console.timeEnd("gemini")
-        console.log(finalScript)
         return res.status(200).json({ script: finalScript.output_text })
     }
     catch (error) {
-        console.log(error.status, error.message)
+        console.error(error.status, error.message)
         if (error.status === 429) {
             return res.status(429).json({ error: "Daily limit reached. Please try again later." })
         }

@@ -35,7 +35,6 @@ const ResultPage = () => {
             difference: displayResult.difference,
             estimatedAmount: displayResult.estimatedAmount
         }
-        console.log(scriptData)
 
         content = (
             <div className="flex w-full max-w-md flex-col gap-6">
@@ -89,7 +88,6 @@ const ResultPage = () => {
         async function sendScriptData(scriptData) {
             setIsLoading(true)
             try {
-                console.log("Scriptdata:", scriptData)
                 const response = await fetch("/api/script", {
                     method: "POST",
                     headers: {

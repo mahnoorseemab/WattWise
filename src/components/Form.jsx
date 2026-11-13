@@ -43,22 +43,22 @@ const Form = () => {
   }
 
   return (
-    <div className="flex flex-col bg-background h-screen font-sans gap-4">
+    <div className="flex flex-col bg-background min-h-screen font-sans gap-4 px-4">
       <div className="flex flex-col items-center ">
         <div className="flex relative">
           <Link to="/">
-            <img src={Arrow} className="mt-8 absolute right-[171%]" title="Back" alt="Arrow" />
+            <img src={Arrow} className="mt-8 absolute left-0 md:left-auto md:right-[171%]" title="Back" alt="Arrow" />
           </Link>
-          <h1 className=" text-darkest-purple font-semibold text-3xl tracking-wide mt-10">Fill the details of your Electricity Bill!</h1>
+          <h1 className=" text-darkest-purple font-semibold text-2xl md:text-3xl text-center tracking-wide mt-16 md:mt-10">Fill the details of your Electricity Bill!</h1>
         </div>
-        <p className="text-gray-600 text-sm">Enter the details from your IESCO bill to compare it with an estimate based on official rates.</p>
+        <p className="text-gray-600 text-sm text-center">Enter the details from your IESCO bill to compare it with an estimate based on official rates.</p>
       </div>
       <form action=""
         onSubmit={
           handleSubmit
         }>
         <div className="flex items-center justify-center m-2 flex-col">
-          <div className="flex flex-col border-gray-500 w-[40vw]">
+          <div className="flex flex-col border-gray-500 w-full md:w-[60vw] lg:w-[40vw]">
             <div className="flex flex-col gap-1 p-3">
               <label className="text-darkest-purple text-lg" htmlFor="BillAmount">Total Amount of Bill</label>
               <input className="border-2 border-purple-200 bg-white outline-deep-purple p-3 rounded-2xl " type="number" placeholder="Enter the total amount of your bill"

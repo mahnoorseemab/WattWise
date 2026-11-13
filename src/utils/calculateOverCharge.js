@@ -13,7 +13,6 @@ export function compareAmount(userUnit, userElectricCharges, rate) {
     let rawDifference = userElectricCharges - rawEstimatedAmount
     let difference = Math.round(rawDifference * 100) / 100
 
-
     return {
         userElectricCharges: userElectricCharges,
         userUnits: userUnit,
