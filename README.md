@@ -2,7 +2,7 @@
 
 **Confused by your electricity bill?** WattWise estimates your IESCO bill from the official tariff rates, shows the difference from what you were charged, and writes a short, polite script you can use to ask the company for a breakdown.
 
-**Live demo:** https://watt-wise-woad.vercel.app/
+**Live Link:** https://watt-wise-woad.vercel.app/
 
 > WattWise gives an **estimate**, not a verdict. It never claims you were overcharged. It tells you the difference and helps you ask the right question.
 
